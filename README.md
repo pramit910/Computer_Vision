@@ -4,5 +4,9 @@
 
 ###### Here is a comprehensive list of existed projects in this repo:
 
+1. Face Detection:
+
+	
+
 ###### Adios!
 
