@@ -14,15 +14,15 @@ Some of the applications of face detection can be in 24x7 surveillance, biometri
 4.	Template matching
 5.	Appearance based
 
-	The state-of-the-art methods for face detection involve the use of Deep learning techniques such as Multi-Task Cascade Convolutional Neural Network (MTCNN), and Single shot detectors like YOLO. Extended applications include predicting the face position using Kalman Filter tracking. This increases the face detection rate and meet the real time detection requirements.
+The state-of-the-art methods for face detection involve the use of Deep learning techniques such as Multi-Task Cascade Convolutional Neural Network (MTCNN), and Single shot detectors like YOLO. Extended applications include predicting the face position using Kalman Filter tracking. This increases the face detection rate and meet the real time detection requirements.
 	
-	With the technological boom Deep Learning has paved the way for creating accurate models that can detect faces with a very high precision accuracy. Some of these methods that proved to perform better than “traditional” methods mentioned above are:
+With the technological boom Deep Learning has paved the way for creating accurate models that can detect faces with a very high precision accuracy. Some of these methods that proved to perform better than “traditional” methods mentioned above are:
 
 1.	Training simple classifier [3]
 2. 	Convolutional Neural Networks combined with Kalman Filtering (Ren et al. (2017)): CNNs are used here to detect the face in a video. But when a face is largely deflected or severely occluded, Kalman Filter tracking is used to predict face position. This increases the face detection rate and meet the real time detection requirements.
 3.	Deep Cascaded detection method – exploits bounding-box regression, a localization technique, to approach the detection of potential faces in images. This involves cascaded architecture with 3 stages of deep convolutional networks to predict existence of faces.
 
-	Even though Face detection has been prominent in the industry for quite some time, it still faces a few challenges that the researchers and engineers look to improve. Listed below are the reasons that mainly affect face detection and reduce the accuracy and face detection rate. [1]:
+Even though Face detection has been prominent in the industry for quite some time, it still faces a few challenges that the researchers and engineers look to improve. Listed below are the reasons that mainly affect face detection and reduce the accuracy and face detection rate. [1]:
 
 1. Odd human expressions in a digital image
 2. Face occlusion: face hidden by other objects
@@ -34,7 +34,7 @@ Some of the applications of face detection can be in 24x7 surveillance, biometri
 8. Face orientation
 9. Distance from camera
 
-	Latest advances in technology have propelled people and industries to offer the face detection as a service in the form of APIs. Some of the notable ones are Amazon Recognition, Microsoft Face API, IBM Watson visual recognition, Google cloud vision, etc. The other revolution for such applications was led by the introduction of Deep Learning which has taken the world of computer vision by storm. Some of the latest and most accurate and precise face detection models are:
+Latest advances in technology have propelled people and industries to offer the face detection as a service in the form of APIs. Some of the notable ones are Amazon Recognition, Microsoft Face API, IBM Watson visual recognition, Google cloud vision, etc. The other revolution for such applications was led by the introduction of Deep Learning which has taken the world of computer vision by storm. Some of the latest and most accurate and precise face detection models are:
 
 1. DeepFace
 2. ArcFace
@@ -43,8 +43,9 @@ Some of the applications of face detection can be in 24x7 surveillance, biometri
 5. Dlib
 6. MTCNN
 
-	These advanced methods have been utilized in developing the state-of-the-art face detection models like the single shot detectors and two-shot detectors. In this project we develop a two-shot learning method to detect faces.
+These advanced methods have been utilized in developing the state-of-the-art face detection models like the single shot detectors and two-shot detectors. In this project we develop a two-shot learning method to detect faces.
 
+-----------
 ### DATASET
 
 For the purpose of developing the face detection model, a custom dataset comprising of photos taken via laptop’s webcam has been prepared, and would be used to train a deep learning model for the downstream task of face detection.  Sample images of our custom dataset is shown below:
@@ -58,8 +59,8 @@ Other than the above method to train a face detection model some of the standard
 1. MIT Dataset: http://cbcl.mit.edu/softwaredatasets/FaceData2.html - 19 × 19 Gray-scale PGM format images. Training set: 2429 faces, 4548 non-faces. Test set: 472 faces, 23,573 non-faces
 2. The Yale face database: www.face-rec.org/databases/ - Contains 165 gray-scale images in GIF format of 15 individuals. There are 11 images per subject, one per different facial expression or configuration: center-light, w/glasses, happy, left-light, w/no glasses, normal, right-light, sad, sleepy, surprised, and wink
 3. SCface—surveillance cameras face database: www.scface.org - Images were taken in uncontrolled indoor environment using five video surveillance cameras of various qualities. Database contains 4160 static images (in visible and infrared spectrum) of 130 subjects
--------
 
+-----------
 ### DATA DESCRIPTION
 
 A custom dataset containing live images taken through the webcam at different poses and distances is utilized. The process of data collection is described below:
@@ -79,6 +80,7 @@ The samples that contained the face were labeled as shown above and the ones tha
 4. Of the 90 images collected, 68 images had faces in them and the rest did not. These images were split into train, validation, and test images in the ratio of 70-15-15 percent. This resulted in 62 images in training dataset, 15 in test dataset, and 13 in the validation dataset.
 5. Image augmentation was carried out using the albumentations library and the final dataset after augmentation was scaled to 3720 images. These images were then used to train and validate the face detection model.
 
+-----------
 ### PRE-PROCESSING
 
 After the initially collected images are split into train, test, and validation sets data augmentation is carried out. This is particularly done so that the model can be exposed to variations of images while training. This enables the model to become more generalized and adaptive to a wide range of scenario’s during deployment. 
@@ -100,7 +102,6 @@ These transformations were applied to all the images in the train, test, and val
 <img width="452" alt="image" src="https://github.com/pramit910/Computer_Vision/assets/25746890/06114f86-84fe-4c89-8f7e-2e8856be0eb2">
 
 ---------
-
 ### MODELS IMPLEMENTED
 
 The model used to train our face detection algorithm is a VGG16 model on which 2 more layers for classifying and detecting the face in the image are added. On the core, the basic VGG16 architecture capable of detecting complex representations and pattern is utilized. This VGG16 model is altered by adding a classification and regression layer to its model head.
@@ -204,16 +205,19 @@ The test performance is first observed by face detection on the test sets. The r
 
 With the partially trained model, it was implemented for real-time face detection using the opencv module. The threshold value set for this purpose is 0.5. This means that the bounding box would be displayed if the predicted probability of a face being present in the captured image instance from the real-time feed is greater than 0.5. This threshold value is flexible and can be varied depending on where face detection is applied in real-life. A small sample of the real-time face detection can be seen in the video uploaded “Real-time Video Face Detection.”
 
+-----------
 ### CONCLUSIONS & LIMITATIONS
 
 By using VGG16 as the base architecture for the face detection task, it is expected to perform with high accuracy and to a certain extent and limited performance the model did perform well when executed in real time using OpenCV. By implementing this model, an important skill of transfer was shown where any pretrained model can be modified for any downstream task and result in good performance. Also, VGG16 deep architecture allows it to identify complex feature representations which can be advantageous for face detection.
 
 The current face detection model was only trained on images of a single person, with limited image transformations, and with limited computational resources. The model was also trained on 5 epochs only considering the computational limitations. Due to this the model could not be immediately deployed to a software application. Another aspect can be the limitations of VGG16 with face detection as face detection requires localized and spatially precise predictions which might be the strength of a VGG16 model. The fixed-size input images and max-pooling layers in VGG16 may cause some loss of spatial resolution and potentially affect the accuracy of detecting small or partially occluded faces.
 
+-----------
 ### FUTURE WORK
 
 The subsequent work would be to enhance the face detection model by training it on images that contain 1 or more different faces rather than the face of a single person. Moreover, increased transformations/augmentations like color jittering, filtering, noise addition, etc. can be applied to the static images for training purposes. Following the basic augmentations custom augmentations that transform only particular components of the image can be applied. One such example is changing the hairstyle, makeup, and attributes of the person face(s) in the image. This can be achieved by the use GANs. These pre-processing steps can further enhance the model generalization and to a certain extent the performance as well.
 
+-----------
 ### REFERENCES
 
 1. Kumar, A., Kaur, A. & Kumar, M. Face detection techniques: a review. Artif Intell Rev 52, 927–948 (2019). https://doi.org/10.1007/s10462-018-9650-2
@@ -222,3 +226,5 @@ The subsequent work would be to enhance the face detection model by training it 
 4. Ren Z, Yang S, Zou F, Yang F, Luan C, Li K (2017) A face tracking framework based on convolutional neural networks and Kalman filter. In: Proceeding of 8th IEEE international conference on software engineering and service science, pp 410–413
 5. www.tensorflow.org 
 
+-----
+-----
